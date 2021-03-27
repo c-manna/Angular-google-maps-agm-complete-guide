@@ -1,56 +1,54 @@
-	<agm-map
-		[latitude]="lat"
-		[longitude]="lng"
-		[zoom]="zoom"
-		[disableDefaultUI]="true"
-		[zoomControl]="true"
-		(mapClick)="mapClicked($event)"
-		(centerChange)="centerChange($event)"
-		(mapReady)="mapReady($event)"
-		class="map-outer"
-	>
-		<!-- imagePath="https://raw.githubusercontent.com/googlemaps/v3-utility-library/master/markerclustererplus/images/m" -->
-		<agm-marker-cluster
-			class="map-cluster"
-			[minimumClusterSize]="minClusterSize"
-			[styles]="mapOptions.styles"
-			[calculator]="mapOptions.calculator"
-			[maxZoom] = "6"
-		>
-			<agm-marker
-				*ngFor="let m of markers | async; let i = index"
-				(markerClick)="clickedMarker(m.label, i)"
-				[latitude]="m.location.lattitude"
-				[iconUrl]="{
+<agm-map
+  [latitude]="lat"
+  [longitude]="lng"
+  [zoom]="zoom"
+  [disableDefaultUI]="true"
+  [zoomControl]="true"
+  (mapClick)="mapClicked($event)"
+  (centerChange)="centerChange($event)"
+  (mapReady)="mapReady($event)"
+  class="map-outer"
+>
+  <!-- imagePath="https://raw.githubusercontent.com/googlemaps/v3-utility-library/master/markerclustererplus/images/m" -->
+  <agm-marker-cluster
+    class="map-cluster"
+    [minimumClusterSize]="minClusterSize"
+    [styles]="mapOptions.styles"
+    [calculator]="mapOptions.calculator"
+    [maxZoom]="6"
+  >
+    <agm-marker
+      *ngFor="let m of markers | async; let i = index"
+      (markerClick)="clickedMarker(m.label, i)"
+      [latitude]="m.lat"
+      [iconUrl]="{
 					url: './assets/images/map-marker.png'
 				}"
-				[longitude]="m.location.longitude"
-				[label]="{
+      [longitude]="m.lng"
+      [label]="{
 					color: '#fff',
 					fontWeight: 'bold',
 					fontSize: '14px',
 					fontFamily: 'nunito',
 					lineHeight: '10px',
-					text: m.price
+					text: m.label
 				}"
-				[markerDraggable]="false"
-				(dragEnd)="markerDragEnd(m, $event)"
-			>
-				<agm-snazzy-info-window
-					[isOpen]="isInfoWindowOpen(i)"
-					[latitude]="m.location.lattitude"
-					[longitude]="m.location.longitude"
-					[closeWhenOthersOpen]="true"
-					[closeOnMapClick]="true"
-					[showCloseButton]="false"
-					[openOnMarkerClick]="true"
-					[wrapperClass]="'info-window'"
-					#infoWindow
-				>
-					<ng-template>
-              
-					</ng-template>
-				</agm-snazzy-info-window>
-			</agm-marker>
-		</agm-marker-cluster>
-	</agm-map>
+      [markerDraggable]="false"
+      (dragEnd)="markerDragEnd(m, $event)"
+    >
+      <agm-snazzy-info-window
+        [isOpen]="isInfoWindowOpen(i)"
+        [latitude]="m.lat"
+        [longitude]="m.lng"
+        [closeWhenOthersOpen]="true"
+        [closeOnMapClick]="true"
+        [showCloseButton]="false"
+        [openOnMarkerClick]="true"
+        [wrapperClass]="'info-window'"
+        #infoWindow
+      >
+        <ng-template> </ng-template>
+      </agm-snazzy-info-window>
+    </agm-marker>
+  </agm-marker-cluster>
+</agm-map>

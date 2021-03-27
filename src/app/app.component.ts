@@ -1,12 +1,13 @@
-import { Component, VERSION } from "@angular/core";
+import { Component, OnInit, VERSION } from "@angular/core";
 import { MouseEvent } from "@agm/core";
+import { BehaviorSubject } from "rxjs";
 
 @Component({
   selector: "my-app",
   templateUrl: "./app.component.html",
   styleUrls: ["./app.component.css"]
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   name = "Angular " + VERSION.major;
   // google maps zoom level
   zoom: number = 8;
@@ -55,17 +56,94 @@ export class AppComponent {
       // index: 2 -> for red icon
     }
   };
+  public markers = new BehaviorSubject<any[]>(null);
+
+  ngOnInit(): void {
+    let items = [
+      {
+        lat: 51.673858,
+        lng: 7.815982,
+        label: "A",
+        event_info: "info of A",
+        draggable: false
+      },
+      {
+        lat: 51.373858,
+        lng: 7.215982,
+        label: "B",
+        event_info: "info of B",
+        draggable: false
+      },
+      {
+        lat: 51.723858,
+        lng: 7.895982,
+        label: "C",
+        event_info: "info of C",
+        draggable: false
+      },
+      {
+        lat: 53.723858,
+        lng: 8.895982,
+        label: "D",
+        event_info: "info of D",
+        draggable: false
+      },
+      {
+        lat: 54.723858,
+        lng: 12.895982,
+        label: "E",
+        event_info: "info of E",
+        draggable: false
+      },
+      {
+        lat: 21.723858,
+        lng: 75.895982,
+        label: "F",
+        event_info: "info of F",
+        draggable: false
+      },
+      {
+        lat: 41.723858,
+        lng: 32.895982,
+        label: "G",
+        event_info: "info of G",
+        draggable: false
+      },
+      {
+        lat: 55.723858,
+        lng: 34.895982,
+        label: "H",
+        event_info: "info of H",
+        draggable: false
+      },
+      {
+        lat: 56.723858,
+        lng: 45.895982,
+        label: "I",
+        event_info: "info of I",
+        draggable: false
+      },
+      {
+        lat: 59.723858,
+        lng: 75.895982,
+        label: "J",
+        event_info: "info of J",
+        draggable: false
+      }
+    ];
+    this.markers.next(items);
+  }
 
   clickedMarker(label: string, index: number) {
     console.log(`clicked the marker: ${label || index}`);
   }
 
   mapClicked($event: MouseEvent) {
-    this.markers.push({
+    /* this.markers.push({
       lat: $event.coords.lat,
       lng: $event.coords.lng,
       draggable: true
-    });
+    }); */
   }
 
   markerDragEnd(m: marker, $event: MouseEvent) {
@@ -87,26 +165,9 @@ export class AppComponent {
     });
   }
 
-  markers: marker[] = [
-    {
-      lat: 51.673858,
-      lng: 7.815982,
-      label: "A",
-      draggable: true
-    },
-    {
-      lat: 51.373858,
-      lng: 7.215982,
-      label: "B",
-      draggable: false
-    },
-    {
-      lat: 51.723858,
-      lng: 7.895982,
-      label: "C",
-      draggable: true
-    }
-  ];
+  isInfoWindowOpen(id) {
+    return this.openedWindow == id; // alternative: check if id is in array
+  }
 }
 
 // just an interface for type safety.
