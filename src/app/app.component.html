@@ -4,16 +4,19 @@
   <agm-marker-cluster class="map-cluster" [minimumClusterSize]="minClusterSize" [styles]="mapOptions.styles"
     [calculator]="mapOptions.calculator" [maxZoom]="6">
     <agm-marker *ngFor="let m of markers | async; let i = index" (markerClick)="clickedMarker(m.label, i)"
-      [latitude]="m.lat" [iconUrl]="{
+      [latitude]="m.lat" 
+      [iconUrl]="{
 					url: './assets/images/map-marker.png'
-				}" [longitude]="m.lng" [label]="{
-					color: '#fff',
+				}" 
+        [longitude]="m.lng" [label]="{
+					color: 'red',
 					fontWeight: 'bold',
 					fontSize: '14px',
 					fontFamily: 'nunito',
 					lineHeight: '10px',
 					text: m.label
-				}" [markerDraggable]="false" (dragEnd)="markerDragEnd(m, $event)">
+				}" 
+        [markerDraggable]="false" (dragEnd)="markerDragEnd(m, $event)">
       <agm-snazzy-info-window [isOpen]="isInfoWindowOpen(i)" [latitude]="m.lat" [longitude]="m.lng"
         [closeWhenOthersOpen]="true" [closeOnMapClick]="true" [showCloseButton]="false" [openOnMarkerClick]="true"
         [wrapperClass]="'info-window'" #infoWindow>
