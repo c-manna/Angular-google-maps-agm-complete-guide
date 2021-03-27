@@ -127,11 +127,11 @@ export class AppComponent implements OnInit {
     this.markers.next(items);
   }
 
-  	centerChange(coords: LatLngLiteral) {
-		//console.log(event);
-		this.centerLatitude = coords.lat;
-		this.centerLongitude = coords.lng;
-	}
+  centerChange(coords: LatLngLiteral) {
+    //console.log(event);
+    this.centerLatitude = coords.lat;
+    this.centerLongitude = coords.lng;
+  }
 
   clickedMarker(label: string, index: number) {
     console.log(`clicked the marker: ${label || index}`);
