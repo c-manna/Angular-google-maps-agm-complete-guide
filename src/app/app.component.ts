@@ -14,6 +14,47 @@ export class AppComponent {
   // initial center position for the map
   lat: number = 51.673858;
   lng: number = 7.815982;
+  minClusterSize = 2;
+  openedWindow: number = -1;
+  centerLatitude = this.lat;
+  centerLongitude = this.lng;
+
+  mapOptions = {
+    styles: [
+      {
+        url: "./assets/images/cluster.png",
+        width: 70,
+        height: 50,
+        textColor: "#fff",
+        fontWeight: "bold",
+        textSize: "14px",
+        fontFamily: "nunito",
+        lineHeight: "12px",
+        paddingTop: "8px",
+        backgroundSize: "cover"
+      }
+    ],
+    calculator: markers => {
+      console.log(markers);
+      let min = markers[0].label.text.replace(/\$/g, "");
+      for (let i = 0; i < markers.length; i++) {
+        // you have access all the markers from each cluster
+        if (min > markers[i].label.text.replace(/\$/g, "")) {
+          min = markers[i].label.text.replace(/\$/g, "");
+        }
+      }
+      //return { text: markers.length + " Hotels " + 'from $' + min, index: 1 };
+      //return { text: `<span class="cluster"> ${markers.length} + " Hotels " + 'from $' + ${min}, index: 1</span>` };
+      return {
+        text: `<span class="cluster"> ${
+          markers.length
+        } Properties from $${min}</span>`,
+        index: 1
+      };
+      // index: 1 -> for green icon
+      // index: 2 -> for red icon
+    }
+  };
 
   clickedMarker(label: string, index: number) {
     console.log(`clicked the marker: ${label || index}`);
