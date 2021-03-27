@@ -36,20 +36,13 @@ export class AppComponent implements OnInit {
       }
     ],
     calculator: markers => {
-      console.log(markers);
-      let min = markers[0].label.text.replace(/\$/g, "");
       for (let i = 0; i < markers.length; i++) {
         // you have access all the markers from each cluster
-        if (min > markers[i].label.text.replace(/\$/g, "")) {
-          min = markers[i].label.text.replace(/\$/g, "");
-        }
       }
       //return { text: markers.length + " Hotels " + 'from $' + min, index: 1 };
       //return { text: `<span class="cluster"> ${markers.length} + " Hotels " + 'from $' + ${min}, index: 1</span>` };
       return {
-        text: `<span class="cluster"> ${
-          markers.length
-        } Properties from $${min}</span>`,
+        text: markers.length,
         index: 1
       };
       // index: 1 -> for green icon
