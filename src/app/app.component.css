@@ -31,3 +31,50 @@ info-window .si-content{
     max-height: max-content !important;
     overflow: hidden;
 }
+
+map-outer .gm-control-active {
+	position: relative;
+}
+map-outer .gm-control-active img,
+map-outer .gm-control-active img {
+	display: none !important;
+}
+map-outer .gm-control-active[aria-label='Zoom in']:after {
+	width: 15px;
+	height: 2px;
+	position: absolute;
+	left: 0;
+	right: 0;
+    margin: 0 auto;
+	top: 50%;
+    content: '';
+    transform: translateY(-50%);
+	background: #222222;
+}
+map-outer .gm-control-active[aria-label='Zoom in']:before {
+	width: 2px;
+	height: 15px;
+	position: absolute;
+	left: 0;
+	right: 0;
+    margin: 0 auto;
+	top: 50%;
+    content: '';    
+    transform: translateY(-50%);
+	background: #222222;
+}
+map-outer .gm-control-active[aria-label='Zoom out']:after {
+	width: 15px;
+	height: 2px;
+	position: absolute;
+	left: 0;
+	right: 0;
+    margin: 0 auto;
+	top: 50%;
+    content: '';
+    transform: translateY(-50%);
+	background: #222222;
+}
+map-outer {
+    height: 100%;
+}
