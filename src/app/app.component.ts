@@ -187,6 +187,7 @@ export class AppComponent implements OnInit {
   }
 
   clickedMarker(label: string, index: number) {
+    this.openedWindow = index;
     console.log(`clicked the marker: ${label || index}`);
   }
 
