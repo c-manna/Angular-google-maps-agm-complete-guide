@@ -10,7 +10,7 @@ import { BehaviorSubject } from "rxjs";
 export class AppComponent implements OnInit {
   name = "Angular " + VERSION.major;
   // google maps zoom level
-  zoom: number = 8;
+  map_zoom: number = 4;
 
   // initial center position for the map
   lat: number = 51.673858;
