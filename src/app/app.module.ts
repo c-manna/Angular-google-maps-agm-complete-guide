@@ -6,14 +6,17 @@ import { HelloComponent } from "./hello.component";
 import { AgmCoreModule } from "@agm/core";
 import { AgmJsMarkerClustererModule } from '@agm/js-marker-clusterer';
 import { AgmSnazzyInfoWindowModule } from '@agm/snazzy-info-window';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
     BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
     AgmJsMarkerClustererModule,
     AgmSnazzyInfoWindowModule,
    AgmCoreModule.forRoot({
-		  apiKey: 'AIzaSyCDhjF3LNn2qqYUivCkiyYD8lQMAzihz7I',
+		  apiKey: 'AIzaSyCnn-_D68N95BaSpYRYn1E3N_DHGs1vz0Y',
 		  language: "en",
 		  libraries: ['places','geometry']
 		})

@@ -1,6 +1,8 @@
-import { Component, OnInit, VERSION } from "@angular/core";
+import { Component, OnInit, VERSION,  NgZone, ViewChild, ElementRef } from "@angular/core";
 import { MouseEvent, LatLngLiteral } from "@agm/core";
 import { BehaviorSubject } from "rxjs";
+import { MapsAPILoader } from '@agm/core';
+import { FormControl } from "@angular/forms";
 
 @Component({
   selector: "my-app",
@@ -8,6 +10,7 @@ import { BehaviorSubject } from "rxjs";
   styleUrls: ["./app.component.css"]
 })
 export class AppComponent implements OnInit {
+  @ViewChild("search",{static:false})searchElementRef: ElementRef;
   name = "Angular " + VERSION.major;
   // google maps zoom level
   map_zoom: number = 4;
@@ -51,8 +54,41 @@ export class AppComponent implements OnInit {
     }
   };
   public markers = new BehaviorSubject<any[]>(null);
+  public searchControl: FormControl;
+
+  constructor(    
+    private mapsAPILoader: MapsAPILoader,
+    private ngZone: NgZone){}
 
   ngOnInit(): void {
+        //create search FormControl
+    this.searchControl = new FormControl();
+    
+    //set current position
+    this.setCurrentPosition();
+    
+    //load Places Autocomplete
+    this.mapsAPILoader.load().then(() => {
+      let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
+        types: ["address"]
+      });
+      autocomplete.addListener("place_changed", () => {
+        this.ngZone.run(() => {
+          //get the place result
+          let place: google.maps.places.PlaceResult = autocomplete.getPlace();
+  
+          //verify result
+          if (place.geometry === undefined || place.geometry === null) {
+            return;
+          }
+          
+          //set latitude, longitude and zoom
+          this.lat = place.geometry.location.lat();
+          this.lng = place.geometry.location.lng();
+          this.map_zoom = 12;
+        });
+      });
+    });
     let items = [
       {
         lat: 51.673858,
@@ -126,6 +162,16 @@ export class AppComponent implements OnInit {
       }
     ];
     this.markers.next(items);
+  }
+
+    private setCurrentPosition() {
+    if ("geolocation" in navigator) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        this.lat = position.coords.latitude;
+        this.lng = position.coords.longitude;
+        this.map_zoom = 12;
+      });
+    }
   }
 
   centerChange(coords: LatLngLiteral) {
