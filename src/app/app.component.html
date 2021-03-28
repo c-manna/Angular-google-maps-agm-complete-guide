@@ -28,7 +28,6 @@
     [minimumClusterSize]="minClusterSize"
     [styles]="mapOptions.styles"
     [calculator]="mapOptions.calculator"
-    [maxZoom]="6"
   >
     <agm-marker
       *ngFor="let m of markers | async; let i = index"
