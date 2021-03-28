@@ -29,7 +29,7 @@ export class AppComponent implements OnInit {
         height: 50,
         textColor: "green",
         fontWeight: "bold",
-        textSize: "14px",
+        textSize: "24px",
         fontFamily: "nunito",
         lineHeight: "12px",
         paddingTop: "8px",
