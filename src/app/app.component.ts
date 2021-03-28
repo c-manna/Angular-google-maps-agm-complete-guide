@@ -57,7 +57,7 @@ export class AppComponent implements OnInit {
   public searchControl: FormControl;
 
   constructor(    
-    private mapsAPILoader: MapsAPILoader,
+    //private mapsAPILoader: MapsAPILoader,
     private ngZone: NgZone){}
 
   ngOnInit(): void {
@@ -65,10 +65,10 @@ export class AppComponent implements OnInit {
     this.searchControl = new FormControl();
     
     //set current position
-    this.setCurrentPosition();
+    //this.setCurrentPosition();
     
     //load Places Autocomplete
-    this.mapsAPILoader.load().then(() => {
+/*     this.mapsAPILoader.load().then(() => {
       let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
         types: ["address"]
       });
@@ -88,7 +88,7 @@ export class AppComponent implements OnInit {
           this.map_zoom = 12;
         });
       });
-    });
+    }); */
     let items = [
       {
         lat: 51.673858,
