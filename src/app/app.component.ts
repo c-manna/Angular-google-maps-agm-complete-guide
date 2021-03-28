@@ -26,7 +26,7 @@ export class AppComponent implements OnInit {
         url: "./assets/images/cluster.png",
         width: 70,
         height: 50,
-        textColor: "#fff",
+        textColor: "green",
         fontWeight: "bold",
         textSize: "14px",
         fontFamily: "nunito",
