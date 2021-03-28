@@ -11,6 +11,7 @@ export class AppComponent implements OnInit {
   name = "Angular " + VERSION.major;
   // google maps zoom level
   map_zoom: number = 4;
+  clulster_max_zoom = 4;
 
   // initial center position for the map
   lat: number = 51.673858;
