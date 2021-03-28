@@ -16,7 +16,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     AgmJsMarkerClustererModule,
     AgmSnazzyInfoWindowModule,
    AgmCoreModule.forRoot({
-		  apiKey: 'AIzaSyAdOm0iSDuwMF8XT9T1WJgN0Fsi0B8RDAo',
+		  apiKey: 'AIzaSyCI97YoHaUedCufy1KTPMjRdtt-TZejU8s',
 		  language: "en",
 		  libraries: ['places','geometry']
 		})
