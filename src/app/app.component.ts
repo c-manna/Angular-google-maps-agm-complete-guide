@@ -30,7 +30,7 @@ export class AppComponent implements OnInit {
         url: "./assets/images/cluster.png",
         width: 70,
         height: 50,
-        textColor: "green",
+        textColor: "rED",
         fontWeight: "bold",
         textSize: "14px",
         fontFamily: "nunito",
@@ -43,10 +43,8 @@ export class AppComponent implements OnInit {
       for (let i = 0; i < markers.length; i++) {
         // you have access all the markers from each cluster
       }
-      //return { text: markers.length + " Hotels " + 'from $' + min, index: 1 };
-      //return { text: `<span class="cluster"> ${markers.length} + " Hotels " + 'from $' + ${min}, index: 1</span>` };
       return {
-        text: markers.length,
+        text: markers.length+' MARKERS',
         index: 1
       };
       // index: 1 -> for green icon
@@ -57,18 +55,18 @@ export class AppComponent implements OnInit {
   public searchControl: FormControl;
 
   constructor(    
-    //private mapsAPILoader: MapsAPILoader,
+    private mapsAPILoader: MapsAPILoader,
     private ngZone: NgZone){}
 
   ngOnInit(): void {
         //create search FormControl
     this.searchControl = new FormControl();
-    
+    this.searchControl.setValue('EUROPE')
     //set current position
     //this.setCurrentPosition();
     
     //load Places Autocomplete
-/*     this.mapsAPILoader.load().then(() => {
+    this.mapsAPILoader.load().then(() => {
       let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
         types: ["address"]
       });
@@ -88,7 +86,7 @@ export class AppComponent implements OnInit {
           this.map_zoom = 12;
         });
       });
-    }); */
+    });
     let items = [
       {
         lat: 51.673858,
